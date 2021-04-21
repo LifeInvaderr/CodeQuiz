@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    background: #bb3939 ;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background: #860f44 ;
+    padding: 30px 25px;
+    color: #ffffff;
+}
+
+footer {
+    width: 100%;
+    background: #eec89f ;
+    font-size: 2.4rem;
+    padding: 20px;
+    border-top: 5px solid;
+}
+
+/* These lines of CSS is taken from the Taskinator project to save on time */
+.page-content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 25px auto;
+    width: 95%;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.starting-card{
+    flex: 1;
+    margin:0 20px 20px;
+    width: 100%;
+}
+
+.question-card{
+    flex:1;
+    margin:0 20px 20px;
+    width: 100%;
+}
+
+.button {
+    outline: none;
+    border: none;
+    display: inline-block;
+    padding: 10px 15px;
+    background: var(--primary);
+    font-size: 2.2rem;
+    border-radius: 12px;
+    position: relative;
+    top: -3px;
+    box-shadow: 0 3px var(--grey);
+  }
+  
+  .btn:hover {
+    box-shadow: 0 2px var(--grey);
+    top: -2px;
+  }
+  .btn:active {
+    box-shadow: 0 0px var(--grey);
+    top: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .timer {
+    border-top: 5px solid;
+    padding: 5px;
+    text-align: center;
+    background-color: #ea5f2d;
+    font-size: 1.5vw;
+  }
+
+  .show {
+    display: block;
+    display: initial;
+  }
