@@ -76,9 +76,18 @@ function quizQuesInd() {
 
 
 function ansCheck() {
-  console.log(this.textContent)
-}
+  for (var i = 1, len = quesCard.children.length; i < len; i++)
+  {
+  
 
+      (function(index){
+          quesCard.children[i].onclick = function(){
+                alert(index)  ;
+          }    
+      })(i);
+  
+  }
+}
 
 // Questions
 // Resources used for array are from:
@@ -103,7 +112,7 @@ var questions = [
       "This is ans 3",
       "This is ans 4"
     ],
-    correct: "This is ans 1",
+    correct: "This is ans 2",
   },
   {
     title: "This is a question",
