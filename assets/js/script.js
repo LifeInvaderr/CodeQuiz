@@ -5,6 +5,8 @@ var quesCard = document.querySelector(".question-card")
 var questionOptions = document.querySelector(".options");
 var startButton = document.querySelector(".start")
 
+// Current Question Index Variable
+var currentQues = 0
 
 // Score and Timer elements
 var timeleft = 75;
@@ -33,35 +35,35 @@ function startTimer() {
     timer.innerHTML = timeleft + " seconds remaining";
     timeleft -= 1;
   }, 1000);
-
 }
-
-var i = 0
 
 // This is the function to add the buttons to the page
 // as well as add the content from the array to the page
 function quizQuesInd() {
+  quesCard.innerHTML = " "
+
+
   var quesTextEle = document.createElement("h2")
-  quesTextEle.textContent = questions[i].title;
+  quesTextEle.textContent = questions[currentQues].title;
   quesCard.append(quesTextEle);
 
   var quesBtn1 = document.createElement("button");
-  quesBtn1.textContent = questions[i].choices[0];
+  quesBtn1.textContent = questions[currentQues].choices[0];
   quesBtn1.classList.add("ansButton1");
   quesCard.append(quesBtn1);
 
   var quesBtn2 = document.createElement("button");
-  quesBtn2.textContent = questions[i].choices[1];
+  quesBtn2.textContent = questions[currentQues].choices[1];
   quesBtn2.classList.add("ansButton2");
   quesCard.append(quesBtn2);
 
   var quesBtn3 = document.createElement("button");
-  quesBtn3.textContent = questions[i].choices[2];
+  quesBtn3.textContent = questions[currentQues].choices[2];
   quesBtn3.classList.add("ansButton3");
   quesCard.append(quesBtn3);
 
   var quesBtn4 = document.createElement("button");
-  quesBtn4.textContent = questions[i].choices[3];
+  quesBtn4.textContent = questions[currentQues].choices[3];
   quesBtn4.classList.add("ansButton4");
   quesCard.append(quesBtn4);
 
@@ -70,19 +72,21 @@ function quizQuesInd() {
   document.querySelector(".ansButton3").addEventListener("click", ansCheck);
   document.querySelector(".ansButton4").addEventListener("click", ansCheck);
 
-  // check if this .contnent are = to i.answer
-
-}
-
-
+// Function to check answers within the array
 function ansCheck() {
   for (var i = 1, len = quesCard.children.length; i < len; i++)
   {
-  
-
       (function(index){
           quesCard.children[i].onclick = function(){
-                alert(index)  ;
+                var buttonContent = this.textContent;
+                if (buttonContent === questions[currentQues].correct) {
+                  console.log("correct")
+                }
+                else {
+                  console.log("wrong")
+                }
+                currentQues++
+                quizQuesInd()
           }    
       })(i);
   
@@ -95,14 +99,44 @@ function ansCheck() {
 // https://www.youtube.com/watch?v=wI1CWzNtE-M
 var questions = [
   {
-    title: "This question one",
+    title: "What color is the sky?",
     choices: [
-      "This is ans 1",
-      "This is ans 2",
-      "This is ans 3",
-      "This is ans 4"
+      "Blue",
+      "Green",
+      "Purple",
+      "Red"
     ],
-    correct: "This is ans 1",
+    correct: "Blue",
+  },
+  {
+    title: "What shape is a tire",
+    choices: [
+      "Square",
+      "Circle",
+      "Triangle",
+      "Oval"
+    ],
+    correct: "Circle",
+  },
+  {
+    title: "What animal is not like the others",
+    choices: [
+      "Cow",
+      "Sheep",
+      "Wolf",
+      "Pig"
+    ],
+    correct: "Wolf",
+  },
+  {
+    title: "Best ending for Fallout: New Vegas",
+    choices: [
+      "NCR",
+      "Legion",
+      "Mr. House",
+      "Independent"
+    ],
+    correct: "NCR",
   },
   {
     title: "This is a question",
@@ -112,39 +146,7 @@ var questions = [
       "This is ans 3",
       "This is ans 4"
     ],
-    correct: "This is ans 2",
-  },
-  {
-    title: "This is a question",
-    choices: [
-      "This is ans 1",
-      "This is ans 2",
-      "This is ans 3",
-      "This is ans 4"
-    ],
-    correct: "This is ans 1",
-  },
-  {
-    title: "This is a question",
-    choices: [
-      "This is ans 1",
-      "This is ans 2",
-      "This is ans 3",
-      "This is ans 4"
-    ],
-    correct: "This is ans 1",
-  },
-  {
-    title: "This is a question",
-    choices: [
-      "This is ans 1",
-      "This is ans 2",
-      "This is ans 3",
-      "This is ans 4"
-    ],
-    correct: "This is ans 1",
+    correct: "This is ans 4",
   },
 ]
-
-console.log(questions[i].title)
 
