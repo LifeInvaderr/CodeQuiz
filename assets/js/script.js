@@ -4,13 +4,19 @@ var startCard = document.querySelector(".starting-card")
 var quesCard = document.querySelector(".question-card")
 var questionOptions = document.querySelector(".options");
 var startButton = document.querySelector(".start")
+var endScreen = document.querySelector(".score-card")
 
 // Current Question Index Variable
 var currentQues = 0
 
 // Score and Timer elements
-var timeleft = 75;
+var timeleft = 5;
 var score = 0;
+
+// To hide the score card
+window.onload = function() {
+  endScreen.classList.add("hide")
+}
 
 // The button to start the quiz
 startButton.addEventListener("click", function () {
@@ -29,8 +35,9 @@ function quizstart() {
 function startTimer() {
   // Timer for 75 seconds
   var timeset = setInterval(function () {
-    if (timeset <= 0) {
-      clearInterval(timeset);
+    if (timeleft <= 0) {
+      clearInterval(timeset)
+      endquiz();
     }
     timer.innerHTML = timeleft + " seconds remaining";
     timeleft -= 1;
@@ -71,27 +78,59 @@ function quizQuesInd() {
   document.querySelector(".ansButton2").addEventListener("click", ansCheck);
   document.querySelector(".ansButton3").addEventListener("click", ansCheck);
   document.querySelector(".ansButton4").addEventListener("click", ansCheck);
-
+}
 // Function to check answers within the array
 function ansCheck() {
-  for (var i = 1, len = quesCard.children.length; i < len; i++)
-  {
-      (function(index){
-          quesCard.children[i].onclick = function(){
-                var buttonContent = this.textContent;
-                if (buttonContent === questions[currentQues].correct) {
-                  console.log("correct")
-                }
-                else {
-                  console.log("wrong")
-                }
-                currentQues++
-                quizQuesInd()
-          }    
-      })(i);
-  
+  for (var i = 1, len = quesCard.children.length; i < len; i++) {
+    (function (index) {
+      quesCard.children[i].onclick = function () {
+        var buttonContent = this.textContent;
+        if (buttonContent === questions[currentQues].correct) {
+          console.log("correct");
+          score += 100;
+        }
+        else {
+          console.log("wrong");
+          timeleft -= 10;
+        }
+
+        if (len => i) {
+          endquiz()
+        }
+
+        currentQues++
+        quizQuesInd();
+      }
+    })(i);
   }
 }
+
+//if i>= than array
+//then call endquizfunc
+
+//endquiz function
+function endquiz() {
+  quesCard.classList.add("hide");
+
+  console.log(timeleft)
+  console.log(score)
+  timer.classList.add("hide")
+  endScreen.classList.remove("hide")
+
+  var scoreText = document.createElement("h2")
+  scoreText.textContent = "Your score is: " + score
+  endScreen.append(scoreText)
+
+  var timeText = document.createElement("h2")
+  timeText.textContent = "Your had " + timeleft + " seconds left"
+  endScreen.append(timeText)
+
+  clearInterval(timeset)
+
+}
+
+
+
 
 // Questions
 // Resources used for array are from:
