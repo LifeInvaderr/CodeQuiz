@@ -10,11 +10,11 @@ var endScreen = document.querySelector(".score-card")
 var currentQues = 0
 
 // Score and Timer elements
-var timeleft = 5;
+var timeleft = 75;
 var score = 0;
 
 // To hide the score card
-window.onload = function() {
+window.onload = function () {
   endScreen.classList.add("hide")
 }
 
@@ -31,10 +31,12 @@ function quizstart() {
   quizQuesInd();
 };
 
+var timeset;
+
 // This is the function for the timer
 function startTimer() {
   // Timer for 75 seconds
-  var timeset = setInterval(function () {
+  timeset = setInterval(function () {
     if (timeleft <= 0) {
       clearInterval(timeset)
       endquiz();
@@ -80,30 +82,21 @@ function quizQuesInd() {
   document.querySelector(".ansButton4").addEventListener("click", ansCheck);
 }
 // Function to check answers within the array
+// function ansCheck() {
+
 function ansCheck() {
-  for (var i = 1, len = quesCard.children.length; i < len; i++) {
-    (function (index) {
-      quesCard.children[i].onclick = function () {
-        var buttonContent = this.textContent;
-        if (buttonContent === questions[currentQues].correct) {
-          console.log("correct");
-          score += 100;
-        }
-        else {
-          console.log("wrong");
-          timeleft -= 10;
-        }
-
-        if (len => i) {
-          endquiz()
-        }
-
-        currentQues++
-        quizQuesInd();
-      }
-    })(i);
+  var selectedanswer = this.textContent
+  var correctAns = questions[currentQues].correct
+  if (selectedanswer === correctAns) {
+    score += 100;
+  } else { timeleft -= 10 }
+  currentQues++
+  if (currentQues >= questions.length) {
+    endquiz();
   }
+  quizQuesInd();
 }
+
 
 //if i>= than array
 //then call endquizfunc
@@ -111,6 +104,7 @@ function ansCheck() {
 //endquiz function
 function endquiz() {
   quesCard.classList.add("hide");
+  clearInterval(timeset);
 
   console.log(timeleft)
   console.log(score)
@@ -138,54 +132,105 @@ function endquiz() {
 // https://www.youtube.com/watch?v=wI1CWzNtE-M
 var questions = [
   {
-    title: "What color is the sky?",
+    title: "What are replicants?",
     choices: [
-      "Blue",
-      "Green",
-      "Purple",
-      "Red"
+      "Cyborgs",
+      "Bioengineered Beings",
+      "Off Worlders",
+      "Assasins"
     ],
-    correct: "Blue",
+    correct: "Bioengineered Beings",
   },
   {
-    title: "What shape is a tire",
+    title: "What does the term 'retired' mean in the film?",
     choices: [
-      "Square",
-      "Circle",
-      "Triangle",
-      "Oval"
+      "To quit a job",
+      "To find new place of work",
+      "To be killed",
+      "To be placed into custody"
     ],
-    correct: "Circle",
+    correct: "To be killed",
   },
   {
-    title: "What animal is not like the others",
+    title: "What was K?",
     choices: [
-      "Cow",
-      "Sheep",
-      "Wolf",
-      "Pig"
+      "Cyborg",
+      "Replicant",
+      "Human",
+      "Alien"
     ],
-    correct: "Wolf",
+    correct: "Replicant",
   },
   {
-    title: "Best ending for Fallout: New Vegas",
+    title: "Who did Deckard fall in love with?",
     choices: [
-      "NCR",
-      "Legion",
-      "Mr. House",
-      "Independent"
+      "Scarlet",
+      "Joi",
+      "Olivia",
+      "Rachael"
     ],
-    correct: "NCR",
+    correct: "Rachael",
+  }, {
+    title: "What was the blackout?",
+    choices: [
+      "An EMP blast that eraesed all Data",
+      "A shutdown of an electrical grid",
+      "The rebellion of replicants",
+      "The complete shutdown of all replicant manufacturing"
+    ],
+    correct: "An EMP blast that eraesed all Data",
   },
   {
-    title: "This is a question",
+    title: "In the first Blade Runner, what was Roy and the replicants goal?",
     choices: [
-      "This is ans 1",
-      "This is ans 2",
-      "This is ans 3",
-      "This is ans 4"
+      "To produce a new line of replicants",
+      "To inherit the Tyrell Corporation",
+      "To receive cybernetic upgrades",
+      "To extend their current life"
     ],
-    correct: "This is ans 4",
+    correct: "To extend their current life",
   },
+  {
+    title: "In Blade Runner 2049, what was the goal of the replicants?",
+    choices: [
+      "To conceal the first replicant/human child",
+      "To amass an army and take over the human population",
+      "To move off-world and start a new life",
+      "To extend their current life"
+    ],
+    correct: "To conceal the first replicant/human child",
+  },
+  {
+    title: "Why would 'the child' cause protest?",
+    choices: [
+      "It would seem inhumane for a company to produce child replicants",
+      "The Blade Runners were to worried about the Tyrell Corp",
+      "It would remove the barrier between human and Replicant",
+      "As it would give the Replicants some leverage in their goals"
+    ],
+    correct: "It would remove the barrier between human and Replicant",
+  },
+  {
+    title: "In Blade Runner 2049, who was the child?",
+    choices: [
+      "K",
+      "Pris",
+      "Stelline",
+      "Joi"
+    ],
+    correct: "Stelline",
+  }
 ]
+var highscores = JSON.parse(localStorage.getItem("highscores")) || [{
+  Jefferson: 500
+},
+{
+  Anthony: 200
+}]
 
+
+
+
+
+
+localStorage.setItem("highscores", JSON.stringify(highscores))
