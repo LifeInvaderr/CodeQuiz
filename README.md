@@ -14,4 +14,5 @@ From this project, I learned to be less harsh to myself. As when talking to my p
 
 As when researching Javascript, I learned that it was made within 10 days. When hearing this, I was disappointed about how long it took to complete this assignment. After accepting that they had more experience in coding than I do, I shouldn't be comparing myself to those who do.
 
-## If I had more time into the near future, I would like to apply more effort into the CSS and buttons
+## Future goals
+If I had more time into the near future, I would like to apply more effort into the CSS and buttons
