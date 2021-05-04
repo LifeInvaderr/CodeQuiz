@@ -13,3 +13,5 @@ My main hurlde in this project was that I still have the mindset of a University
 From this project, I learned to be less harsh to myself. As when talking to my peers, and instructors/TA's. When doing my research to solve a problem that I had, using additional resources such as snippets of code is acceptable. Especially when understanding how code functions and transforming them.
 
 As when researching Javascript, I learned that it was made within 10 days. When hearing this, I was disappointed about how long it took to complete this assignment. After accepting that they had more experience in coding than I do, I shouldn't be comparing myself to those who do.
+
+## If I had more time into the near future, I would like to apply more effort into the CSS and buttons
